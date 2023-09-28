@@ -6,6 +6,7 @@ struct AlbumMusic: Codable {
     let trackName: String?
     let artworkUrl100: String
     let previewUrl: String?
+//    var isLoading: Bool = false
 }
 
 struct AlbumResponse: Codable {

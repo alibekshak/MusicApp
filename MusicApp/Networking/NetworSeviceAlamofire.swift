@@ -11,6 +11,7 @@ class NetworkManager {
             "limit": 25
         ]
         
+        
         AF.request(Auxiliary.NetworkAuxiliary().baseURL, parameters: parameters).validate().responseJSON { response in
             switch response.result {
             case .success(let data):
