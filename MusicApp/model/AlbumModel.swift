@@ -1,7 +1,7 @@
 import Foundation
 
 
-struct AlbumMusic: Codable {
+struct AlbumMusic: Codable, Equatable {
     let artistName: String
     let trackName: String?
     let artworkUrl100: String
@@ -10,7 +10,7 @@ struct AlbumMusic: Codable {
 }
 
 struct AlbumResponse: Codable {
-    let resultCount: Int
+//    let resultCount: Int
     let results: [AlbumMusic]
 }
 

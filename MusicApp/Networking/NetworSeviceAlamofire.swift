@@ -4,13 +4,14 @@ import Foundation
 
 class NetworkManager {
     static let shared = NetworkManager(); private init() { }
+    
+    let limit: Int = 25
 
     func fetchMusic(for term: String, completion: @escaping ([AlbumMusic]?) -> Void) {
         let parameters: [String: Any] = [
             "term": term,
-            "limit": 25
+            "limit": limit
         ]
-        
         
         AF.request(Auxiliary.NetworkAuxiliary().baseURL, parameters: parameters).validate().responseJSON { response in
             switch response.result {
@@ -19,7 +20,7 @@ class NetworkManager {
                     completion(nil)
                     return
                 }
-
+                
                 do {
                     let decodedResponse = try JSONDecoder().decode(AlbumResponse.self, from: jsonData)
                     completion(decodedResponse.results)
