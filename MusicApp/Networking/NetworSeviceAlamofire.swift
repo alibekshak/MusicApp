@@ -4,13 +4,13 @@ import Foundation
 
 class NetworkManager {
     static let shared = NetworkManager(); private init() { }
-//    private let baseURL = "https://itunes.apple.com/search"
 
-    func fetchMusic(for term: String, completion: @escaping ([ItunesMusic]?) -> Void) {
+    func fetchMusic(for term: String, completion: @escaping ([AlbumMusic]?) -> Void) {
         let parameters: [String: Any] = [
             "term": term,
             "limit": 25
         ]
+        
         AF.request(Auxiliary.NetworkAuxiliary().baseURL, parameters: parameters).validate().responseJSON { response in
             switch response.result {
             case .success(let data):
@@ -20,7 +20,7 @@ class NetworkManager {
                 }
 
                 do {
-                    let decodedResponse = try JSONDecoder().decode(ItunesResponse.self, from: jsonData)
+                    let decodedResponse = try JSONDecoder().decode(AlbumResponse.self, from: jsonData)
                     completion(decodedResponse.results)
                 } catch {
                     print("Ошибка decode: \(error)")
