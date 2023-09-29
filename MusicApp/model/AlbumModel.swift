@@ -10,7 +10,6 @@ struct Album: Codable, Equatable {
     let artistName, collectionName, collectionCensoredName: String?
     let artistViewURL, collectionViewURL: String?
     let artworkUrl60, artworkUrl100: String
-    let collectionPrice: Double
     let collectionExplicitness: String
     let trackCount: Int
     let copyright, country, currency: String?

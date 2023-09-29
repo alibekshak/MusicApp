@@ -20,6 +20,7 @@ struct SongListView: View {
                 .font(.title)
                 .padding()
             
+            
             SearchBar(searchTerm: $searchTerm, showButtons: $showButtons, onCommit: searchMusic)
             
 //            if showButtons{
