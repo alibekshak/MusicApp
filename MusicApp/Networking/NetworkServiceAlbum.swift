@@ -1,13 +1,16 @@
-import Alamofire
 import Foundation
-// https://itunes.apple.com/search?term=jack+johnson&entity=song&limit=5
+import Alamofire
 
-class NetworkManager {
-    static let shared = NetworkManager(); private init() { }
+// https://itunes.apple.com/search?term=jack+johnson&entity=album&limit=5&offset=10
+
+
+class NetworkManagerAlbum {
+    static let shared = NetworkManagerAlbum()
+    private init() { }
     
-    let limit: Int = 25
+    let limit: Int = 15
 
-    func fetchMusic(for term: String, entity: String, completion: @escaping ([SongResults]?) -> Void) {
+    func fetchAlbum(for term: String, entity: String, completion: @escaping ([Album]?) -> Void) {
         let parameters: [String: Any] = [
             "term": term,
             "entity": entity,
@@ -23,7 +26,7 @@ class NetworkManager {
                 }
                 
                 do {
-                    let decodedResponse = try JSONDecoder().decode(SongResponse.self, from: jsonData)
+                    let decodedResponse = try JSONDecoder().decode(AlbumResponse.self, from: jsonData)
                     completion(decodedResponse.results)
                 } catch {
                     print("Ошибка decode: \(error)")
