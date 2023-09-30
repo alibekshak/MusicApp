@@ -5,6 +5,8 @@ struct SongResults: Codable, Equatable {
     let trackName: String?
     let artworkUrl100: String
     let previewUrl: String?
+    let collectionName: String?
+    
 }
 
 struct SongResponse: Codable {

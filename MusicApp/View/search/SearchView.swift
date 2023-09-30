@@ -21,48 +21,22 @@ struct SearchView: View {
                 .font(.largeTitle)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
+            
             SearchBar(searchTerm: $searchTerm, showButtons: $showButtons, onCommit: performSearch)
             
-//            Divider()
             if searchTerm.count == 0{
                 PlaceholderView(searchTerm: $searchTerm, showButtons: $showButtons, searchMusic: performSearch)
                     .frame(maxHeight: .infinity)
             }else{
                 ScrollView(.vertical){
-                    VStack{
-                        Text("Songs")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding()
-                        ScrollView(.horizontal, showsIndicators: false){
-                            HStack{
-                                ForEach(musicResults, id: \.trackName) { song in
-                                    HStack{
-                                        ImageLoadingView(urlString: song.artworkUrl100, size: 60)
-                                        VStack(alignment: .leading){
-                                            Text(song.trackName!)
-                                                .lineLimit(2)
-                                            Text(song.artistName)
-                                                .font(.caption)
-                                        }
-                                    }
-                                }
-                            }
-                            .padding()
-                        }
-                    }
-                    .padding()
+                    
+//                   SongRowView(musicResults: $musicResults)
+                    SongRowView(musicResults: $musicResults)
                     
                     Divider()
                     
-                    LazyVStack{
-                        Text("Album")
-                            .font(.headline)
-                        ForEach(albumResults, id: \.collectionName) { album in
-                            Text(album.collectionName!)
-                        }
-                    }
-                    
+                    AlbumRowView(albumResults: $albumResults)
+                
                 }
             }
         }
