@@ -17,7 +17,7 @@ struct AlbumRowView: View {
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
-            ForEach(albumResults, id: \.collectionName) { album in
+            ForEach(albumResults, id: \.artworkUrl100) { album in
                 HStack{
                     ImageLoadingView(urlString: album.artworkUrl100, size: 100)
                     
@@ -29,9 +29,9 @@ struct AlbumRowView: View {
                     }
                     .lineLimit(1)
                 }
+                .padding(.leading)
             }
         }
-        .padding()
     }
 }
 

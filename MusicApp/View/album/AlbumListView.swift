@@ -27,21 +27,23 @@ struct AlbumListView: View {
                 PlaceholderView(searchTerm: $searchTerm, showButtons: $showButtons, searchMusic: searchAlbum)
                     .frame(maxHeight: .infinity)
             }else{
-                ScrollView(.horizontal) {
-                    HStack {
-                        ForEach(albumResults, id: \.collectionName) { album in
-                            VStack {
-                                AsyncImage(url: URL(string: album.artworkUrl100))
-                                    .frame(width: 100, height: 100)
-                                Text(album.artistName!)
-                                    .font(.headline)
+                List{
+                    ForEach(albumResults, id: \.collectionName) { album in
+                        HStack{
+                            ImageLoadingView(urlString: album.artworkUrl100, size: 100)
+                            
+                            VStack(alignment: .leading){
                                 Text(album.collectionName!)
-                                    .font(.subheadline)
+                                Text(album.artistName!)
+                                    .font(.caption)
+                                    .foregroundColor(.gray)
                             }
-                            .padding()
+                            .lineLimit(1)
                         }
+//                        .padding(.leading)
                     }
                 }
+                .listStyle(.plain)
             }
         }
     }

@@ -20,21 +20,24 @@ struct SongListView: View {
                 PlaceholderView(searchTerm: $searchTerm, showButtons: $showButtons, searchMusic: searchMusic)
                     .frame(maxHeight: .infinity)
             }else{
-                ScrollView(.horizontal) {
-                    HStack {
-                        ForEach(musicResults, id: \.trackName) { music in
-                            VStack {
-                                AsyncImage(url: URL(string: music.artworkUrl100))
-                                    .frame(width: 100, height: 100)
-                                Text(music.trackName ?? "")
+                List{
+                    ForEach(musicResults, id: \.trackName) { song in
+                        HStack{
+                            ImageLoadingView(urlString: song.artworkUrl60, size: 60)
+                            
+                            VStack(alignment: .leading){
+                                Text(song.trackName!)
                                     .font(.headline)
-                                Text(music.artistName)
-                                    .font(.subheadline)
+                                    .truncationMode(.tail)
+                                Text(song.artistName + " - " + song.collectionName!)
+                                    .font(.caption)
+                                    .foregroundColor(.gray)
                             }
-                            .padding()
+                            .lineLimit(1)
                         }
                     }
                 }
+                .listStyle(.plain)
             }
         }
     }

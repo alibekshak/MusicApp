@@ -17,7 +17,6 @@ struct Album: Codable, Equatable {
 
 }
 
-
 //    static func example() -> Album {
 //
 //        Album(wrapperType: "collection", collectionType: "Album", id: 1, artistID: 2, amgArtistID: 3,

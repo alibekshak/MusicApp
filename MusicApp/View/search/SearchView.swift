@@ -28,9 +28,9 @@ struct SearchView: View {
                 PlaceholderView(searchTerm: $searchTerm, showButtons: $showButtons, searchMusic: performSearch)
                     .frame(maxHeight: .infinity)
             }else{
+                
                 ScrollView(.vertical){
                     
-//                   SongRowView(musicResults: $musicResults)
                     SongRowView(musicResults: $musicResults)
                     
                     Divider()
