@@ -1,10 +1,3 @@
-//
-//  SearchView.swift
-//  MusicApp
-//
-//  Created by Apple on 29.09.2023.
-//
-
 import SwiftUI
 
 struct SearchView: View {
@@ -16,32 +9,33 @@ struct SearchView: View {
     @State private var musicResults: [SongResults] = []
     
     var body: some View {
-        VStack{
-            Text("Search")
-                .font(.largeTitle)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
-            
-            SearchBar(searchTerm: $searchTerm, showButtons: $showButtons, onCommit: performSearch)
-            
-            if searchTerm.count == 0{
-                PlaceholderView(searchTerm: $searchTerm, showButtons: $showButtons, searchMusic: performSearch)
-                    .frame(maxHeight: .infinity)
-            }else{
+        NavigationView{
+            VStack{
+                Text("Search")
+                    .font(.largeTitle)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
                 
-                ScrollView(.vertical){
-                    
-                    SongRowView(musicResults: $musicResults)
-                    
-                    Divider()
-                    
-                    AlbumRowView(albumResults: $albumResults)
+                SearchBar(searchTerm: $searchTerm, showButtons: $showButtons, onCommit: performSearch)
                 
+                if searchTerm.count == 0{
+                    PlaceholderView(searchTerm: $searchTerm, showButtons: $showButtons, searchMusic: performSearch)
+                        .frame(maxHeight: .infinity)
+                }else{
+                    
+                    ScrollView(.vertical){
+                        
+                        SongRowView(musicResults: $musicResults)
+                        
+                        Divider()
+                        
+                        AlbumRowView(albumResults: $albumResults)
+                        
+                    }
                 }
             }
         }
     }
-    
     private func performSearch() {
         searchAlbum()
         searchMusic()
@@ -50,8 +44,8 @@ struct SearchView: View {
     private func searchAlbum() {
         imageLoadingStates.removeAll()
         NetworkManagerAlbum.shared.fetchAlbum(for: searchTerm, entity: "album") { result in
-            if let music = result {
-                self.albumResults = music
+            if let album = result {
+                self.albumResults = album
             }
         }
     }

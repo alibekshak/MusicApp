@@ -18,18 +18,18 @@ struct AlbumRowView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
             ForEach(albumResults, id: \.artworkUrl100) { album in
-                HStack{
-                    ImageLoadingView(urlString: album.artworkUrl100, size: 100)
-                    
-                    VStack(alignment: .leading){
-                        Text(album.collectionName!)
-                        Text(album.artistName!)
-                            .font(.caption)
-                            .foregroundColor(.gray)
+                    HStack{
+                        ImageLoadingView(urlString: album.artworkUrl100, size: 100)
+                        
+                        VStack(alignment: .leading){
+                            Text(album.collectionName!)
+                            Text(album.artistName!)
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                        }
+                        .lineLimit(1)
                     }
-                    .lineLimit(1)
-                }
-                .padding(.leading)
+                    .padding(.leading)
             }
         }
     }

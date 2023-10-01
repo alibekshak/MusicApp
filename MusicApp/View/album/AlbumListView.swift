@@ -1,10 +1,3 @@
-//
-//  AlbumListView.swift
-//  MusicApp
-//
-//  Created by Apple on 28.09.2023.
-//
-
 import SwiftUI
 
 struct AlbumListView: View {

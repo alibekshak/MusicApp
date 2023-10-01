@@ -8,36 +8,40 @@ struct SongListView: View {
     @State private var showButtons: Bool = true
     
     var body: some View {
-        VStack {
-            Text("Songs")
-                .font(.largeTitle)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
-            SearchBar(searchTerm: $searchTerm, showButtons: $showButtons, onCommit: searchMusic)
-            
-            if searchTerm.count == 0{
-
-                PlaceholderView(searchTerm: $searchTerm, showButtons: $showButtons, searchMusic: searchMusic)
-                    .frame(maxHeight: .infinity)
-            }else{
-                List{
-                    ForEach(musicResults, id: \.trackName) { song in
-                        HStack{
-                            ImageLoadingView(urlString: song.artworkUrl60, size: 60)
-                            
-                            VStack(alignment: .leading){
-                                Text(song.trackName!)
-                                    .font(.headline)
-                                    .truncationMode(.tail)
-                                Text(song.artistName + " - " + song.collectionName!)
-                                    .font(.caption)
-                                    .foregroundColor(.gray)
+        NavigationView{
+            VStack {
+                Text("Songs")
+                    .font(.largeTitle)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
+                SearchBar(searchTerm: $searchTerm, showButtons: $showButtons, onCommit: searchMusic)
+                
+                if searchTerm.count == 0{
+                    
+                    PlaceholderView(searchTerm: $searchTerm, showButtons: $showButtons, searchMusic: searchMusic)
+                        .frame(maxHeight: .infinity)
+                }else{
+                    List{
+                        ForEach(musicResults, id: \.trackName) { song in
+                            NavigationLink(destination: WebView(urlString: song.previewUrl ?? "No preview")){
+                                HStack{
+                                    ImageLoadingView(urlString: song.artworkUrl60, size: 60)
+                                    
+                                    VStack(alignment: .leading){
+                                        Text(song.trackName!)
+                                            .font(.headline)
+                                            .truncationMode(.tail)
+                                        Text(song.artistName + " - " + song.collectionName!)
+                                            .font(.caption)
+                                            .foregroundColor(.gray)
+                                    }
+                                    .lineLimit(1)
+                                }
                             }
-                            .lineLimit(1)
                         }
                     }
+                    .listStyle(.plain)
                 }
-                .listStyle(.plain)
             }
         }
     }
