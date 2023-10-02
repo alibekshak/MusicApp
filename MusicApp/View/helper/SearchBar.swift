@@ -7,7 +7,7 @@ struct SearchBar: View {
 
     var body: some View {
         HStack(spacing: 1) {
-            TextField("Search for music", text: $searchTerm, onCommit: onCommit)
+            TextField(Auxiliary.TextForSearchBar().textSearch, text: $searchTerm, onCommit: onCommit)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
@@ -21,7 +21,7 @@ struct SearchBar: View {
                     searchTerm = ""
                     hideKeyboard()
                 }) {
-                    Text("Cancel")
+                    Text(Auxiliary.TextForSearchBar().cancel)
                         .foregroundColor(.blue)
                 }
                 .padding(.trailing, 13)

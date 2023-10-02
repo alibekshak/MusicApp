@@ -17,7 +17,7 @@ struct PlaceholderView: View {
     
     var body: some View {
         VStack(spacing: 15){
-            Text("Trending")
+            Text(Auxiliary.TextForPlaceholder().textPlaceholder)
                 .font(.title)
             ForEach(suggestion, id: \.self){ text in
                 Button{

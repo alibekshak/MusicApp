@@ -10,33 +10,23 @@ class NetworkManagerAlbum {
     
     let limit: Int = 15
 
-    func fetchAlbum(for term: String, entity: String, completion: @escaping ([Album]?) -> Void) {
+    func fetchAlbum(for term: String, entity: String, completion: @escaping (Result<[Album], AFError>) -> Void) {
         let parameters: [String: Any] = [
             "term": term,
             "entity": entity,
             "limit": limit,
         ]
         
-        AF.request(Auxiliary.NetworkAuxiliary().baseURL, parameters: parameters).validate().responseJSON { response in
-            switch response.result {
-            case .success(let data):
-                guard let jsonData = try? JSONSerialization.data(withJSONObject: data, options: []) else {
-                    completion(nil)
-                    return
+        AF.request(Auxiliary.NetworkAuxiliary().baseURL, parameters: parameters)
+            .validate()
+            .responseDecodable(of: AlbumResponse.self) { response in
+                switch response.result {
+                case .success(let decodedResponse):
+                    completion(.success(decodedResponse.results))
+                case .failure(let error):
+                    completion(.failure(error))
                 }
-                
-                do {
-                    let decodedResponse = try JSONDecoder().decode(AlbumResponse.self, from: jsonData)
-                    completion(decodedResponse.results)
-                } catch {
-                    print("Ошибка decode: \(error)")
-                    completion(nil)
-                }
-
-            case .failure(let error):
-                print("Ошибка request: \(error)")
-                completion(nil)
             }
-        }
     }
 }
+

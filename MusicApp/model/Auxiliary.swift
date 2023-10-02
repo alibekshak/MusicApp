@@ -24,6 +24,14 @@ struct Auxiliary{
         var entityAlbum = "album"
     }
     
+    struct TextForSearchBar{
+        var textSearch = "Search for music"
+        var cancel = "Cancel"
+    }
+    
+    struct TextForPlaceholder{
+        var textPlaceholder = "Trending"
+    }
 }
 
 

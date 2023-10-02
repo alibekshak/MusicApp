@@ -1,6 +1,5 @@
 import Foundation
 
-
 struct AlbumResponse: Codable {
     let results: [Album]
 }

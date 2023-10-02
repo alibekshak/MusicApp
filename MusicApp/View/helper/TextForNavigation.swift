@@ -1,10 +1,3 @@
-//
-//  TextForNavigation.swift
-//  MusicApp
-//
-//  Created by Apple on 02.10.2023.
-//
-
 import SwiftUI
 
 struct TextForSearch: View {

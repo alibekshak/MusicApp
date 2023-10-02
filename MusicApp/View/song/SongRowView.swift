@@ -14,7 +14,7 @@ struct SongRowView: View {
             ScrollView(.horizontal, showsIndicators: false){
                 LazyHGrid(rows: rows, spacing: 15){
                     ForEach(musicResults, id: \.previewUrl) { song in
-                        NavigationLink(destination: WebView(urlString: song.previewUrl ?? "No preview")){
+                        NavigationLink(destination: WebView(urlString: song.previewUrl ?? "")){
                             HStack{
                                 ImageLoadingView(urlString: song.artworkUrl60, size: 60)
                                 VStack(alignment: .leading){
@@ -31,8 +31,6 @@ struct SongRowView: View {
                                         .font(.caption)
                                         .foregroundColor(.gray)
                                 }
-                                .lineLimit(1)
-                                
                                 .padding()
                             }
                         }

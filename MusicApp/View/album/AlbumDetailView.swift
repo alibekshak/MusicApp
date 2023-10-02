@@ -27,12 +27,12 @@ struct AlbumDetailView: View {
         .padding()
         List{
             ForEach(musicResults, id: \.trackName) { song in
-                NavigationLink(destination: WebView(urlString: song.previewUrl ?? "No previewURl")){
+                NavigationLink(destination: WebView(urlString: song.previewUrl ?? "")){
                     HStack{
                         ImageLoadingView(urlString: song.artworkUrl60, size: 60)
                         
                         VStack(alignment: .leading){
-                            Text(song.trackName ?? "No TrackName")
+                            Text(song.trackName!)
                                 .font(.headline)
                                 .truncationMode(.tail)
                             Text(song.artistName + " - " + song.collectionName!)
@@ -53,9 +53,12 @@ struct AlbumDetailView: View {
     private func searchSong() {
         imageLoadingStates.removeAll()
         NetworkManagerSongAlbum.shared.fetchSongs(forAlbumId: String(album.collectionId), entity: Auxiliary.TextForEntity().entitySong){ result in
-            if let song = result{
+            switch result {
+            case .success(let song):
                 let filteredSongs = song.filter { $0.trackName != nil }
                 self.musicResults = filteredSongs
+            case .failure(let error):
+                print("\(error)")
             }
         }
     }

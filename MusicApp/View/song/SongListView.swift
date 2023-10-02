@@ -22,7 +22,7 @@ struct SongListView: View {
                 }else{
                     List{
                         ForEach(musicResults, id: \.previewUrl) { song in
-                            NavigationLink(destination: WebView(urlString: song.previewUrl ?? "No preview")){
+                            NavigationLink(destination: WebView(urlString: song.previewUrl ?? "")){
                                 HStack{
                                     ImageLoadingView(urlString: song.artworkUrl60, size: 60)
                                     
@@ -47,9 +47,13 @@ struct SongListView: View {
     
     private func searchSong() {
         imageLoadingStates.removeAll()
-        NetworkManager.shared.fetchMusic(for: searchTerm, entity: Auxiliary.TextForEntity().entitySong) { result in
-            if let music = result {
+        
+        NetworkManager.shared.fetchMusic(for: searchTerm, entity: Auxiliary.TextForEntity().entitySong) { response in
+            switch response {
+            case .success(let music):
                 self.musicResults = music
+            case .failure(let error):
+                print("\(error)")
             }
         }
     }

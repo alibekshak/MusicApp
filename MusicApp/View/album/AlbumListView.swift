@@ -45,8 +45,11 @@ struct AlbumListView: View {
     private func searchAlbum() {
         imageLoadingStates.removeAll()
         NetworkManagerAlbum.shared.fetchAlbum(for: searchTerm, entity: Auxiliary.TextForEntity().entityAlbum) { result in
-            if let album = result {
+            switch result{
+            case .success(let album):
                 self.albumResults = album
+            case .failure(let error):
+                print("\(error)")
             }
         }
     }
