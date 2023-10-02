@@ -8,23 +8,9 @@ struct AlbumDetailView: View {
     @State private var imageLoadingStates: [String: Bool] = [:]
     
     var body: some View {
-        HStack{
-            ImageLoadingView(urlString: album.artworkUrl100, size: 100)
-
-            VStack(alignment: .leading){
-                Text(album.collectionName!)
-                Text(album.artistName!)
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                    .padding(.bottom, 5)
-
-                Text(album.primaryGenreName)
-                Text("\(album.trackCount) songs" )
-            }
-            .lineLimit(1)
-            Spacer()
-        }
+       AlbumForDetailView(album: album)
         .padding()
+        
         List{
             ForEach(musicResults, id: \.trackName) { song in
                 NavigationLink(destination: WebView(urlString: song.previewUrl ?? "")){

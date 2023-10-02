@@ -33,6 +33,7 @@ struct SongRowView: View {
                                 }
                                 .padding()
                             }
+                            .padding([.top, .bottom])
                         }
                         
                     }

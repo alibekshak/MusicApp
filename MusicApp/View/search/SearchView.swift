@@ -13,8 +13,9 @@ struct SearchView: View {
             VStack{
                TextForSearch()
                     .font(.largeTitle)
-                SearchBar(searchTerm: $searchTerm, showButtons: $showButtons, onCommit: performSearch)
                 
+                SearchBar(searchTerm: $searchTerm, showButtons: $showButtons, onCommit: performSearch)
+
                 if searchTerm.count == 0{
                     PlaceholderView(searchTerm: $searchTerm, showButtons: $showButtons, searchMusic: performSearch)
                         .frame(maxHeight: .infinity)
