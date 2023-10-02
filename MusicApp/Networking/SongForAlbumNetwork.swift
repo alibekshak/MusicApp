@@ -14,9 +14,7 @@ class NetworkManagerSongAlbum {
             "entity": entity,
         ]
         
-        AF.request(Auxiliary.NetworkAuxiliaryForSongAlbum().baseURL, parameters: parameters)
-            .validate()
-            .responseDecodable(of: SongResponse.self) { response in
+        AF.request(Auxiliary.NetworkAuxiliaryForSongAlbum().baseURL, parameters: parameters).validate().responseDecodable(of: SongResponse.self) { response in
                 switch response.result {
                 case .success(let decodedResponse):
                     completion(.success(decodedResponse.results))
