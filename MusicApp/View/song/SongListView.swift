@@ -13,15 +13,15 @@ struct SongListView: View {
                 TextForSongs()
                     .font(.largeTitle)
                 
-                SearchBar(searchTerm: $searchTerm, showButtons: $showButtons, onCommit: searchMusic)
+                SearchBar(searchTerm: $searchTerm, showButtons: $showButtons, onCommit: searchSong)
                 
                 if searchTerm.count == 0{
                     
-                    PlaceholderView(searchTerm: $searchTerm, showButtons: $showButtons, searchMusic: searchMusic)
+                    PlaceholderView(searchTerm: $searchTerm, showButtons: $showButtons, searchMusic: searchSong)
                         .frame(maxHeight: .infinity)
                 }else{
                     List{
-                        ForEach(musicResults, id: \.trackName) { song in
+                        ForEach(musicResults, id: \.previewUrl) { song in
                             NavigationLink(destination: WebView(urlString: song.previewUrl ?? "No preview")){
                                 HStack{
                                     ImageLoadingView(urlString: song.artworkUrl60, size: 60)
@@ -45,9 +45,9 @@ struct SongListView: View {
         }
     }
     
-    private func searchMusic() {
+    private func searchSong() {
         imageLoadingStates.removeAll()
-        NetworkManager.shared.fetchMusic(for: searchTerm, entity: "song") { result in
+        NetworkManager.shared.fetchMusic(for: searchTerm, entity: Auxiliary.TextForEntity().entitySong) { result in
             if let music = result {
                 self.musicResults = music
             }

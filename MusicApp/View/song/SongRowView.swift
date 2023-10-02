@@ -10,7 +10,7 @@ struct SongRowView: View {
         LazyVStack(alignment: .leading){
             TextForSongs()
                 .font(.headline)
-            
+    
             ScrollView(.horizontal, showsIndicators: false){
                 LazyHGrid(rows: rows, spacing: 15){
                     ForEach(musicResults, id: \.previewUrl) { song in
@@ -18,9 +18,15 @@ struct SongRowView: View {
                             HStack{
                                 ImageLoadingView(urlString: song.artworkUrl60, size: 60)
                                 VStack(alignment: .leading){
-                                    Text(song.trackName!.prefix(15) + "...")
-                                        .font(.headline)
-                                        .truncationMode(.tail)
+                                    if song.trackName!.count > 15{
+                                        Text(song.trackName!.prefix(15) + "...")
+                                            .font(.headline)
+                                            .truncationMode(.tail)
+                                    }else{
+                                        Text(song.trackName!)
+                                            .font(.headline)
+                                    }
+
                                     Text(song.artistName)
                                         .font(.caption)
                                         .foregroundColor(.gray)

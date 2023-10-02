@@ -20,7 +20,7 @@ struct AlbumListView: View {
                         .frame(maxHeight: .infinity)
                 }else{
                     List{
-                        ForEach(albumResults, id: \.collectionName) { album in
+                        ForEach(albumResults, id: \.artworkUrl60) { album in
                             NavigationLink(destination: AlbumDetailView(album: album)){
                                 HStack{
                                     ImageLoadingView(urlString: album.artworkUrl100, size: 100)
@@ -44,9 +44,9 @@ struct AlbumListView: View {
 
     private func searchAlbum() {
         imageLoadingStates.removeAll()
-        NetworkManagerAlbum.shared.fetchAlbum(for: searchTerm, entity: "album") { result in
-            if let music = result {
-                self.albumResults = music
+        NetworkManagerAlbum.shared.fetchAlbum(for: searchTerm, entity: Auxiliary.TextForEntity().entityAlbum) { result in
+            if let album = result {
+                self.albumResults = album
             }
         }
     }

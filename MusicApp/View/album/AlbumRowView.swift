@@ -10,7 +10,7 @@ struct AlbumRowView: View {
            TextForAlbums()
                 .font(.headline)
 
-            ForEach(albumResults, id: \.artworkUrl100) { album in
+            ForEach(albumResults, id: \.artworkUrl60) { album in
                 NavigationLink(destination: AlbumDetailView(album: album)){
                     HStack{
                         ImageLoadingView(urlString: album.artworkUrl100, size: 100)

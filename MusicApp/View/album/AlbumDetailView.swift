@@ -1,10 +1,3 @@
-//
-//  AlbumDetailView.swift
-//  MusicApp
-//
-//  Created by Apple on 02.10.2023.
-//
-
 import SwiftUI
 
 struct AlbumDetailView: View {
@@ -53,15 +46,16 @@ struct AlbumDetailView: View {
         }
         .listStyle(.plain)
         .onAppear {
-            searchMusic()
+            searchSong()
         }
     }
     
-    private func searchMusic() {
+    private func searchSong() {
         imageLoadingStates.removeAll()
-        NetworkManagerSongAlbum.shared.fetchSongs(forAlbumId: String(album.collectionId), entity: "song"){ result in
+        NetworkManagerSongAlbum.shared.fetchSongs(forAlbumId: String(album.collectionId), entity: Auxiliary.TextForEntity().entitySong){ result in
             if let song = result{
-                self.musicResults = song
+                let filteredSongs = song.filter { $0.trackName != nil }
+                self.musicResults = filteredSongs
             }
         }
     }

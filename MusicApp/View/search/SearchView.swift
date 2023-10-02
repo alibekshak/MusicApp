@@ -22,34 +22,37 @@ struct SearchView: View {
                     ScrollView(.vertical){
                         
                         SongRowView(musicResults: $musicResults)
+                            .foregroundColor(.black)
                         
                         Divider()
                         
                         AlbumRowView(albumResults: $albumResults)
+                            .foregroundColor(.black)
                     }
                 }
             }
         }
     }
+    
     private func performSearch() {
         searchAlbum()
-        searchMusic()
+        searchSong()
     }
     
     private func searchAlbum() {
         imageLoadingStates.removeAll()
-        NetworkManagerAlbum.shared.fetchAlbum(for: searchTerm, entity: "album") { result in
+        NetworkManagerAlbum.shared.fetchAlbum(for: searchTerm, entity: Auxiliary.TextForEntity().entityAlbum) { result in
             if let album = result {
                 self.albumResults = album
             }
         }
     }
     
-    private func searchMusic() {
+    private func searchSong() {
         imageLoadingStates.removeAll()
-        NetworkManager.shared.fetchMusic(for: searchTerm, entity: "song") { result in
-            if let music = result {
-                self.musicResults = music
+        NetworkManager.shared.fetchMusic(for: searchTerm, entity: Auxiliary.TextForEntity().entitySong) { result in
+            if let song = result {
+                self.musicResults = song
             }
         }
     }

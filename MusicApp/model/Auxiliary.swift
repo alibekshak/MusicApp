@@ -19,6 +19,11 @@ struct Auxiliary{
         var imageForSong = "music.note"
     }
     
+    struct TextForEntity{
+        var entitySong = "song"
+        var entityAlbum = "album"
+    }
+    
 }
 
 

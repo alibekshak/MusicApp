@@ -24,7 +24,7 @@ struct SearchBar: View {
                     Text("Cancel")
                         .foregroundColor(.blue)
                 }
-                .padding(.trailing, 10)
+                .padding(.trailing, 13)
             }
         }
     }
