@@ -7,6 +7,7 @@ struct AlbumResponse: Codable {
 
 struct Album: Codable, Equatable {
     let wrapperType, collectionType: String
+    let collectionId: Int
     let artistName, collectionName, collectionCensoredName: String?
     let artistViewURL, collectionViewURL: String?
     let artworkUrl60, artworkUrl100: String
@@ -15,8 +16,8 @@ struct Album: Codable, Equatable {
     let copyright, country, currency: String?
     let primaryGenreName: String
     let previewUrl: String?
-}
 
+}
 
 
 

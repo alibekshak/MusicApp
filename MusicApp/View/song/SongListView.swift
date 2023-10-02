@@ -10,10 +10,9 @@ struct SongListView: View {
     var body: some View {
         NavigationView{
             VStack {
-                Text("Songs")
+                TextForSongs()
                     .font(.largeTitle)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding()
+                
                 SearchBar(searchTerm: $searchTerm, showButtons: $showButtons, onCommit: searchMusic)
                 
                 if searchTerm.count == 0{

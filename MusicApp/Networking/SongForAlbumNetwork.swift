@@ -1,21 +1,20 @@
 import Foundation
 import Alamofire
 
+//  https://itunes.apple.com/lookup?id=909253&entity=song
 
-class NetworkManagerSongAlbum{
+class NetworkManagerSongAlbum {
     static let shared = NetworkManagerSongAlbum()
     private init() { }
     
-    let limit: Int = 15
 
-    func fetchSongsAlbum(for term: String, entity: String, completion: @escaping ([SongResults]?) -> Void) {
+    func fetchSongs(forAlbumId albumId: String, entity: String, completion: @escaping ([SongResults]?) -> Void) {
         let parameters: [String: Any] = [
-            "term": term,
+            "id": albumId,
             "entity": entity,
-            "limit": limit,
-//            "albumName": albumName
         ]
-        AF.request(Auxiliary.NetworkAuxiliary().baseURL, parameters: parameters).validate().responseJSON{ response in
+        
+        AF.request("https://itunes.apple.com/lookup", parameters: parameters).validate().responseJSON { response in
             switch response.result {
             case .success(let data):
                 guard let jsonData = try? JSONSerialization.data(withJSONObject: data, options: []) else {
@@ -37,4 +36,5 @@ class NetworkManagerSongAlbum{
         }
     }
 }
+
 

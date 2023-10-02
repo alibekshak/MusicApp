@@ -8,11 +8,8 @@ struct SongRowView: View {
     
     var body: some View {
         LazyVStack(alignment: .leading){
-            
-            Text("Songs")
+            TextForSongs()
                 .font(.headline)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
             
             ScrollView(.horizontal, showsIndicators: false){
                 LazyHGrid(rows: rows, spacing: 15){

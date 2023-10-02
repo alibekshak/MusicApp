@@ -11,11 +11,8 @@ struct SearchView: View {
     var body: some View {
         NavigationView{
             VStack{
-                Text("Search")
+               TextForSearch()
                     .font(.largeTitle)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding()
-                
                 SearchBar(searchTerm: $searchTerm, showButtons: $showButtons, onCommit: performSearch)
                 
                 if searchTerm.count == 0{

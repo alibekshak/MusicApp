@@ -27,14 +27,6 @@ struct WebView: UIViewRepresentable {
         init(_ parent: WebView) {
             self.parent = parent
         }
-        
-        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            // Добавьте обработчики событий, если необходимо
-        }
-        
-        func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-            // Обработка ошибок, если необходимо
-        }
     }
 }
 

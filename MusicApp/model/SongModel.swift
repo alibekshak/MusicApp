@@ -7,7 +7,7 @@ struct SongResults: Codable, Equatable {
     let artworkUrl60: String
     let previewUrl: String?
     let collectionName: String?
-    let trackNumber: Int
+    let trackNumber: Int?
 }
 
 
