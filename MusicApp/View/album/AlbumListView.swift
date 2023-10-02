@@ -8,32 +8,36 @@ struct AlbumListView: View {
     @State private var albumResults: [Album] = []
 
     var body: some View {
-        VStack{
-            TextForAlbums()
-                .font(.largeTitle)
-
-            SearchBar(searchTerm: $searchTerm, showButtons: $showButtons, onCommit: searchAlbum)
-
-            if searchTerm.count == 0 {
-                PlaceholderView(searchTerm: $searchTerm, showButtons: $showButtons, searchMusic: searchAlbum)
-                    .frame(maxHeight: .infinity)
-            }else{
-                List{
-                    ForEach(albumResults, id: \.collectionName) { album in
-                        HStack{
-                            ImageLoadingView(urlString: album.artworkUrl100, size: 100)
-
-                            VStack(alignment: .leading){
-                                Text(album.collectionName!)
-                                Text(album.artistName!)
-                                    .font(.caption)
-                                    .foregroundColor(.gray)
+        NavigationView{
+            VStack{
+                TextForAlbums()
+                    .font(.largeTitle)
+                
+                SearchBar(searchTerm: $searchTerm, showButtons: $showButtons, onCommit: searchAlbum)
+                
+                if searchTerm.count == 0 {
+                    PlaceholderView(searchTerm: $searchTerm, showButtons: $showButtons, searchMusic: searchAlbum)
+                        .frame(maxHeight: .infinity)
+                }else{
+                    List{
+                        ForEach(albumResults, id: \.collectionName) { album in
+                            NavigationLink(destination: AlbumDetailView(album: album)){
+                                HStack{
+                                    ImageLoadingView(urlString: album.artworkUrl100, size: 100)
+                                    
+                                    VStack(alignment: .leading){
+                                        Text(album.collectionName!)
+                                        Text(album.artistName!)
+                                            .font(.caption)
+                                            .foregroundColor(.gray)
+                                    }
+                                    .lineLimit(1)
+                                }
                             }
-                            .lineLimit(1)
                         }
                     }
+                    .listStyle(.plain)
                 }
-                .listStyle(.plain)
             }
         }
     }

@@ -14,7 +14,7 @@ class NetworkManagerSongAlbum {
             "entity": entity,
         ]
         
-        AF.request("https://itunes.apple.com/lookup", parameters: parameters).validate().responseJSON { response in
+        AF.request(Auxiliary.NetworkAuxiliaryForSongAlbum().baseURL, parameters: parameters).validate().responseJSON { response in
             switch response.result {
             case .success(let data):
                 guard let jsonData = try? JSONSerialization.data(withJSONObject: data, options: []) else {

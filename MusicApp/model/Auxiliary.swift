@@ -6,6 +6,10 @@ struct Auxiliary{
         var baseURL = "https://itunes.apple.com/search"
     }
     
+    struct NetworkAuxiliaryForSongAlbum{
+        var baseURL = "https://itunes.apple.com/lookup"
+    }
+    
     struct TextForTabView{
         var nameForSearch = "Search"
         var imageForSearch = "magnifyingglass"

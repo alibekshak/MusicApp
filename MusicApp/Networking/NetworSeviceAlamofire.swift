@@ -1,5 +1,6 @@
 import Alamofire
 import Foundation
+
 // https://itunes.apple.com/search?term=jack+johnson&entity=song&limit=5
 
 class NetworkManager {

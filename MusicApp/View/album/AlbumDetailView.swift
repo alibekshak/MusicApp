@@ -29,16 +29,17 @@ struct AlbumDetailView: View {
                 Text("\(album.trackCount) songs" )
             }
             .lineLimit(1)
+            Spacer()
         }
-        
+        .padding()
         List{
             ForEach(musicResults, id: \.trackName) { song in
-                NavigationLink(destination: WebView(urlString: song.previewUrl ?? "No preview")){
+                NavigationLink(destination: WebView(urlString: song.previewUrl ?? "No previewURl")){
                     HStack{
                         ImageLoadingView(urlString: song.artworkUrl60, size: 60)
                         
                         VStack(alignment: .leading){
-                            Text(song.trackName ?? "No trackName")
+                            Text(song.trackName ?? "No TrackName")
                                 .font(.headline)
                                 .truncationMode(.tail)
                             Text(song.artistName + " - " + song.collectionName!)
@@ -50,6 +51,7 @@ struct AlbumDetailView: View {
                 }
             }
         }
+        .listStyle(.plain)
         .onAppear {
             searchMusic()
         }
@@ -66,8 +68,4 @@ struct AlbumDetailView: View {
 
 }
 
-//struct AlbumDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AlbumDetailView()
-//    }
-//}
+
