@@ -16,8 +16,8 @@ struct AlbumForDetailView: View {
             ImageLoadingView(urlString: album.artworkUrl100, size: 100)
 
             VStack(alignment: .leading){
-                Text(album.collectionName!)
-                Text(album.artistName!)
+                Text(album.collectionName)
+                Text(album.artistName)
                     .font(.caption)
                     .foregroundColor(.gray)
                     .padding(.bottom, 5)

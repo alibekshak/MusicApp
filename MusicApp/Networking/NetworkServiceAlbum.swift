@@ -3,7 +3,6 @@ import Alamofire
 
 // https://itunes.apple.com/search?term=jack+johnson&entity=album&limit=5&offset=10
 
-
 class NetworkManagerAlbum {
     static let shared = NetworkManagerAlbum()
     private init() { }
@@ -11,6 +10,7 @@ class NetworkManagerAlbum {
     let limit: Int = 15
 
     func fetchAlbum(for term: String, entity: String, completion: @escaping (Result<[Album], AFError>) -> Void) {
+        
         let parameters: [String: Any] = [
             "term": term,
             "entity": entity,
@@ -27,4 +27,5 @@ class NetworkManagerAlbum {
             }
     }
 }
+
 

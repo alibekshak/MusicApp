@@ -27,7 +27,7 @@ struct SearchView: View {
                         
                         Divider()
                         
-                        AlbumRowView(albumResults: $albumResults)
+//                        AlbumRowView(albumResults: $albumResults)
                             .foregroundColor(.black)
                     }
                 }
