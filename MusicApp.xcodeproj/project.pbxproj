@@ -10,6 +10,9 @@
 		181955BD2ADFCBE3003857F6 /* AlbumSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181955BC2ADFCBE3003857F6 /* AlbumSearchView.swift */; };
 		181955BF2ADFD5B0003857F6 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181955BE2ADFD5B0003857F6 /* State.swift */; };
 		181955C12ADFDD66003857F6 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181955C02ADFDD66003857F6 /* APIService.swift */; };
+		181955C32ADFE2F8003857F6 /* SongListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181955C22ADFE2F8003857F6 /* SongListViewModel.swift */; };
+		181955C52ADFE992003857F6 /* SongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181955C42ADFE992003857F6 /* SongView.swift */; };
+		181955C72ADFE9B2003857F6 /* SongSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181955C62ADFE9B2003857F6 /* SongSearchView.swift */; };
 		18249D702AD6550400A75E90 /* AlbumListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18249D6F2AD6550400A75E90 /* AlbumListViewModel.swift */; };
 		18249D722AD6659200A75E90 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18249D712AD6659200A75E90 /* AlbumView.swift */; };
 		186BB0FC2AC57A4300533FB4 /* Auxiliary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186BB0FB2AC57A4300533FB4 /* Auxiliary.swift */; };
@@ -41,6 +44,9 @@
 		181955BC2ADFCBE3003857F6 /* AlbumSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSearchView.swift; sourceTree = "<group>"; };
 		181955BE2ADFD5B0003857F6 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		181955C02ADFDD66003857F6 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		181955C22ADFE2F8003857F6 /* SongListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongListViewModel.swift; sourceTree = "<group>"; };
+		181955C42ADFE992003857F6 /* SongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongView.swift; sourceTree = "<group>"; };
+		181955C62ADFE9B2003857F6 /* SongSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSearchView.swift; sourceTree = "<group>"; };
 		18249D6F2AD6550400A75E90 /* AlbumListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListViewModel.swift; sourceTree = "<group>"; };
 		18249D712AD6659200A75E90 /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
 		186BB0FB2AC57A4300533FB4 /* Auxiliary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auxiliary.swift; sourceTree = "<group>"; };
@@ -84,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				18249D6F2AD6550400A75E90 /* AlbumListViewModel.swift */,
+				181955C22ADFE2F8003857F6 /* SongListViewModel.swift */,
 				181955C02ADFDD66003857F6 /* APIService.swift */,
 			);
 			path = ViewModels;
@@ -107,6 +114,8 @@
 			children = (
 				186BB1032AC67F4500533FB4 /* SongListView.swift */,
 				186BB1182AC7E47400533FB4 /* SongRowView.swift */,
+				181955C42ADFE992003857F6 /* SongView.swift */,
+				181955C62ADFE9B2003857F6 /* SongSearchView.swift */,
 			);
 			path = song;
 			sourceTree = "<group>";
@@ -293,12 +302,15 @@
 				186BB12B2ACAC91B00533FB4 /* AlbumForDetailView.swift in Sources */,
 				18EAA1E52AC546BE007931BA /* AlbumModel.swift in Sources */,
 				186BB1192AC7E47400533FB4 /* SongRowView.swift in Sources */,
+				181955C72ADFE9B2003857F6 /* SongSearchView.swift in Sources */,
 				186BB1212AC9268500533FB4 /* WebView.swift in Sources */,
 				18EAA1C82AC52B1E007931BA /* ContentView.swift in Sources */,
 				181955BD2ADFCBE3003857F6 /* AlbumSearchView.swift in Sources */,
+				181955C52ADFE992003857F6 /* SongView.swift in Sources */,
 				186BB1022AC5CFBD00533FB4 /* PlaceholderView.swift in Sources */,
 				186BB1292ACA73B800533FB4 /* AlbumDetailView.swift in Sources */,
 				186BB1272ACA6D9100533FB4 /* TextForNavigation.swift in Sources */,
+				181955C32ADFE2F8003857F6 /* SongListViewModel.swift in Sources */,
 				186BB1082AC6808700533FB4 /* NetworkServiceAlbum.swift in Sources */,
 				186BB10B2AC682C900533FB4 /* SearchBar.swift in Sources */,
 				18EAA1C62AC52B1E007931BA /* MusicAppApp.swift in Sources */,

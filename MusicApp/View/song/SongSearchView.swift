@@ -1,5 +1,5 @@
 //
-//  AlbumSearchView.swift
+//  SongSearchView.swift
 //  MusicApp
 //
 //  Created by Apple on 18.10.2023.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct AlbumSearchView: View {
+struct SongSearchView: View {
     
-    @StateObject var viewModel = AlbumListViewModel()
+    @StateObject var viewModel = SongListViewModel()
     
     var body: some View {
         NavigationView{
@@ -17,17 +17,17 @@ struct AlbumSearchView: View {
                 if viewModel.searchTerm.isEmpty{
                     PlaceholderView(searchTerm: $viewModel.searchTerm)
                 } else {
-                    AlbumView(viewModel: viewModel)
+                    SongView(viewModel: viewModel)
                 }
             }
         }
         .searchable(text: $viewModel.searchTerm)
-        .navigationTitle("Album")
+        .navigationTitle("Song")
     }
 }
 
-struct AlbumSearchView_Previews: PreviewProvider {
+struct SongSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        AlbumSearchView()
+        SongSearchView()
     }
 }
