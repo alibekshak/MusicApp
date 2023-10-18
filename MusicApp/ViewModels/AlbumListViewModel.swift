@@ -11,27 +11,16 @@ import Combine
 
 // https://itunes.apple.com/search?term=jack+johnson&entity=album&limit=5&offset=10
 
-
 class AlbumListViewModel: ObservableObject {
-    
-    enum State: Comparable {
-        case good
-        case isLoading
-        case loadedAll
-        case error(String)
-    }
-    
+
     @Published var searchTerm: String = ""
     @Published var albums: [Album] = [Album]()
-    
-    @Published var state: State = .good {
-        didSet {
-            print("state changed to: \(state)")
-        }
-    }
+    @Published var state: State = .good
     
     let limit: Int = 20
     var page: Int = 0
+    
+    let service = APIService()
     
     var subscriptions = Set<AnyCancellable>()
     
@@ -62,16 +51,10 @@ class AlbumListViewModel: ObservableObject {
             return
         }
         
-        let offset = page * limit
-        
-        guard let url = URL(string: "https://itunes.apple.com/search?term=\(searchTerm)&entity=album&limit=\(limit)&offset=\(offset)") else {
-            return
-        }
-        
         state = .isLoading
         
-        AF.request(url).validate().responseDecodable(of: AlbumResponse.self) { [weak self] response in
-            switch response.result {
+        service.fetchAlbums(searchTerm: searchTerm, page: page, limit: limit) { [weak self] response in
+            switch response {
             case .success(let result):
                 DispatchQueue.main.async {
                     for album in result.results {
