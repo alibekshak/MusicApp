@@ -9,24 +9,44 @@ import SwiftUI
 
 struct AlbumView: View {
     
-    @StateObject var viewModel = AlibumListViewModel()
+    @StateObject var viewModel: AlbumListViewModel
     
     var body: some View {
-        NavigationView{
-            List(viewModel.albums){ album in
-                Text(album.collectionName)
-                Text(album.artistName)
-                    .font(.caption)
-                    .foregroundColor(.gray)
+        List{
+            ForEach(viewModel.albums){ album in
+                HStack{
+                    ImageLoadingView(urlString: album.artworkUrl100, size: 100)
+                    
+                    VStack(alignment: .leading){
+                        Text(album.collectionName)
+                        Text(album.artistName)
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }
+                }
             }
-            .searchable(text: $viewModel.searchTerm)
-        
+            
+            switch viewModel.state{
+            case .good:
+                Color.clear
+                    .onAppear{
+                        viewModel.loadMore()
+                    }
+            case .isLoading:
+                ProgressView()
+                    .progressViewStyle(.circular)
+                    .frame(maxWidth: .infinity)
+            case .loadedAll:
+                EmptyView()
+            case .error(let error):
+                Text("\(error)")
+            }
         }
     }
 }
 
 struct AlbumView_Previews: PreviewProvider {
     static var previews: some View {
-        AlbumView()
+        AlbumView(viewModel: AlbumListViewModel())
     }
 }

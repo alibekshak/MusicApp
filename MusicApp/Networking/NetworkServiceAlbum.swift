@@ -3,16 +3,19 @@ import Alamofire
 
 // https://itunes.apple.com/search?term=jack+johnson&entity=album&limit=5&offset=10
 
-class NetworkManagerAlbum {
+class NetworkManagerAlbum: ObservableObject{
     static let shared = NetworkManagerAlbum()
     private init() { }
     
+    @Published var searchTerm: String = ""
+    @Published var albums: [Album] = [Album]()
+    
     let limit: Int = 15
 
-    func fetchAlbum(for term: String, entity: String, completion: @escaping (Result<[Album], AFError>) -> Void) {
+    func fetchAlbum(entity: String, completion: @escaping (Result<[Album], AFError>) -> Void) {
         
         let parameters: [String: Any] = [
-            "term": term,
+            "term": searchTerm,
             "entity": entity,
             "limit": limit,
         ]

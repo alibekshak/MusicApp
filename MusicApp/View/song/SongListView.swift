@@ -17,7 +17,7 @@ struct SongListView: View {
                 
                 if searchTerm.count == 0{
                     
-                    PlaceholderView(searchTerm: $searchTerm, showButtons: $showButtons, searchMusic: searchSong)
+                    PlaceholderView(searchTerm: $searchTerm)
                         .frame(maxHeight: .infinity)
                 }else{
                     List{

@@ -9,7 +9,7 @@ struct ContentView: View {
                     Label(Auxiliary.TextForTabView().nameForSearch, systemImage: Auxiliary.TextForTabView().imageForSearch)
                 }
 //            AlbumListView()
-            AlbumView()
+            AlbumSearchView()
                 .tabItem{
                     Label(Auxiliary.TextForTabView().nameForAlbum, systemImage: Auxiliary.TextForTabView().imageForAlbum)
                 }

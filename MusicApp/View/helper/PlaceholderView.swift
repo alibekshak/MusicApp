@@ -10,10 +10,8 @@ import SwiftUI
 struct PlaceholderView: View {
     
     @Binding var searchTerm: String
-    @Binding var showButtons: Bool
     
     let suggestion = ["Eminem", "KOLEO", "Drake"]
-    var searchMusic: () -> Void
     
     var body: some View {
         VStack(spacing: 15){
@@ -22,8 +20,6 @@ struct PlaceholderView: View {
             ForEach(suggestion, id: \.self){ text in
                 Button{
                     searchTerm = text
-                    searchMusic()
-                    showButtons = false
                 } label: {
                     Text(text)
                 }

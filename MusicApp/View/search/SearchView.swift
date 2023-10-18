@@ -8,6 +8,7 @@ struct SearchView: View {
     @State private var albumResults: [Album] = []
     @State private var musicResults: [SongResults] = []
     
+    
     var body: some View {
         NavigationView{
             VStack{
@@ -17,7 +18,7 @@ struct SearchView: View {
                 SearchBar(searchTerm: $searchTerm, showButtons: $showButtons, onCommit: performSearch)
 
                 if searchTerm.count == 0{
-                    PlaceholderView(searchTerm: $searchTerm, showButtons: $showButtons, searchMusic: performSearch)
+                    PlaceholderView(searchTerm: $searchTerm)
                         .frame(maxHeight: .infinity)
                 }else{
                     ScrollView(.vertical){
@@ -42,10 +43,11 @@ struct SearchView: View {
     
     private func searchAlbum() {
         imageLoadingStates.removeAll()
-        NetworkManagerAlbum.shared.fetchAlbum(for: searchTerm, entity: Auxiliary.TextForEntity().entityAlbum) { result in
+        NetworkManagerAlbum.shared.searchTerm = searchTerm
+        NetworkManagerAlbum.shared.fetchAlbum(entity: Auxiliary.TextForEntity().entityAlbum) { result in
             switch result{
-            case .success(let album):
-                self.albumResults = album
+            case .success(_):
+                    print("(album)")
             case .failure(let error):
                 print("\(error)")
             }
@@ -54,7 +56,7 @@ struct SearchView: View {
     
     private func searchSong() {
         imageLoadingStates.removeAll()
-        
+       
         NetworkManager.shared.fetchMusic(for: searchTerm, entity: Auxiliary.TextForEntity().entitySong) { response in
             switch response {
             case .success(let music):

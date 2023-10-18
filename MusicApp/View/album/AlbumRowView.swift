@@ -10,7 +10,7 @@
 //           TextForAlbums()
 //                .font(.headline)
 //
-//            ForEach(albumResults, id: \.artworkUrl60) { album in
+//            ForEach(albumResults) { album in
 //                NavigationLink(destination: AlbumDetailView(album: album)){
 //                    HStack{
 //                        ImageLoadingView(urlString: album.artworkUrl100, size: 100)

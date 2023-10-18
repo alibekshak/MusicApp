@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181955BD2ADFCBE3003857F6 /* AlbumSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181955BC2ADFCBE3003857F6 /* AlbumSearchView.swift */; };
 		18249D702AD6550400A75E90 /* AlbumListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18249D6F2AD6550400A75E90 /* AlbumListViewModel.swift */; };
 		18249D722AD6659200A75E90 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18249D712AD6659200A75E90 /* AlbumView.swift */; };
 		186BB0FC2AC57A4300533FB4 /* Auxiliary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186BB0FB2AC57A4300533FB4 /* Auxiliary.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		181955BC2ADFCBE3003857F6 /* AlbumSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSearchView.swift; sourceTree = "<group>"; };
 		18249D6F2AD6550400A75E90 /* AlbumListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListViewModel.swift; sourceTree = "<group>"; };
 		18249D712AD6659200A75E90 /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
 		186BB0FB2AC57A4300533FB4 /* Auxiliary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auxiliary.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				186BB11A2AC7E79B00533FB4 /* AlbumRowView.swift */,
 				186BB1282ACA73B800533FB4 /* AlbumDetailView.swift */,
 				18249D712AD6659200A75E90 /* AlbumView.swift */,
+				181955BC2ADFCBE3003857F6 /* AlbumSearchView.swift */,
 			);
 			path = album;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				186BB1192AC7E47400533FB4 /* SongRowView.swift in Sources */,
 				186BB1212AC9268500533FB4 /* WebView.swift in Sources */,
 				18EAA1C82AC52B1E007931BA /* ContentView.swift in Sources */,
+				181955BD2ADFCBE3003857F6 /* AlbumSearchView.swift in Sources */,
 				186BB1022AC5CFBD00533FB4 /* PlaceholderView.swift in Sources */,
 				186BB1292ACA73B800533FB4 /* AlbumDetailView.swift in Sources */,
 				186BB1272ACA6D9100533FB4 /* TextForNavigation.swift in Sources */,
