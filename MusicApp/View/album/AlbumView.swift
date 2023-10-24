@@ -33,7 +33,7 @@ struct AlbumView: View {
                         viewModel.loadMore()
                     }
             case .isLoading:
-                ProgressView()
+                ProgressView("Loading Albums...")
                     .progressViewStyle(.circular)
                     .frame(maxWidth: .infinity)
             case .loadedAll:
@@ -42,6 +42,7 @@ struct AlbumView: View {
                 Text("\(error)")
             }
         }
+        .listStyle(.grouped)
     }
 }
 
