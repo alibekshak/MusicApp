@@ -14,24 +14,26 @@ struct SongView: View {
     var body: some View {
         List{
             ForEach(viewModel.songs){ song in
-                HStack{
-                    ImageLoadingView(urlString: song.artworkUrl60, size: 60)
-                    VStack(alignment: .leading){
-                        if song.trackName.count > 15{
-                            Text(song.trackName.prefix(15) + "...")
-                                .font(.headline)
-                                .truncationMode(.tail)
-                        }else{
-                            Text(song.trackName)
-                                .font(.headline)
+                NavigationLink(destination: WebView(urlString: song.previewURL )){
+                    HStack{
+                        ImageLoadingView(urlString: song.artworkUrl60, size: 60)
+                        VStack(alignment: .leading){
+                            if song.trackName.count > 15{
+                                Text(song.trackName.prefix(15) + "...")
+                                    .font(.headline)
+                                    .truncationMode(.tail)
+                            }else{
+                                Text(song.trackName)
+                                    .font(.headline)
+                                
+                            }
                             
+                            Text(song.artistName)
+                                .font(.caption)
+                                .foregroundColor(.gray)
                         }
-                        
-                        Text(song.artistName)
-                            .font(.caption)
-                            .foregroundColor(.gray)
+                        .padding()
                     }
-                    .padding()
                 }
             }
             

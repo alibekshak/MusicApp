@@ -8,7 +8,6 @@ struct ContentView: View {
 //                .tabItem{
 //                    Label(Auxiliary.TextForTabView().nameForSearch, systemImage: Auxiliary.TextForTabView().imageForSearch)
 //                }
-//            AlbumListView()
             AlbumSearchView()
                 .tabItem{
                     Label(Auxiliary.TextForTabView().nameForAlbum, systemImage: Auxiliary.TextForTabView().imageForAlbum)

@@ -36,6 +36,7 @@ struct AlbumView: View {
                 ProgressView("Loading Albums...")
                     .progressViewStyle(.circular)
                     .frame(maxWidth: .infinity)
+                    
             case .loadedAll:
                 EmptyView()
             case .error(let error):
