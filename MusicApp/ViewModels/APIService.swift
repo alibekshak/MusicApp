@@ -80,9 +80,9 @@ class APIService {
     
     // https://itunes.apple.com/lookup?id=909253&entity=song
     func createURL(for id: Int,type: EntityType) -> URL? {
-        let baseURL = "https://itunes.apple.com/lookup"
+        let baseURL = Auxiliary.NetworkAuxiliaryForSongAlbum().baseURL
         
-        var queryItems = [URLQueryItem(name: "id", value: String(id)),
+        let queryItems = [URLQueryItem(name: "id", value: String(id)),
                           URLQueryItem(name: "entity", value: type.rawValue)]
         
         var components = URLComponents(string: baseURL)

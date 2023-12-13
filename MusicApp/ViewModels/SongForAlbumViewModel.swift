@@ -10,18 +10,17 @@ import Foundation
 class SongForAlbumViewModel: ObservableObject{
     
     let albumID: Int
-    
-    @Published var songs = [Song]()
+    @Published  var songs = [Song]()
     @Published var state: State = .good
     
     private let service = APIService()
-
-    init(albumID: Int){
+    
+    init(albumID: Int) {
         self.albumID = albumID
-        print("AlbumID - \(albumID)")
+        print("init for songs in album \(albumID)")
     }
     
-    func fetch(){
+    func fetch() {
         fetchSongs(for: albumID)
     }
     
@@ -47,5 +46,11 @@ class SongForAlbumViewModel: ObservableObject{
                 }
             }
         }
+    }
+    
+    static func example() -> SongForAlbumViewModel {
+        let vm = SongForAlbumViewModel(albumID: 1)
+        vm.songs = [Song.example2()]
+        return vm
     }
 }

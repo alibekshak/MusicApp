@@ -4,33 +4,24 @@ struct AlbumDetailView: View {
 
     var album: Album
 
-    @ObservedObject var songsViewModel: SongForAlbumViewModel
+    @StateObject var songsViewModel: SongForAlbumViewModel
 
-        init(album: Album) {
-            self.album = album
-            self._songsViewModel = ObservedObject(wrappedValue: SongForAlbumViewModel(albumID: album.id))
-        }
+    init(album: Album) {
+        self.album = album
+        self._songsViewModel = StateObject(wrappedValue: SongForAlbumViewModel(albumID: album.id))
+    }
 
     var body: some View {
         VStack{
             AlbumForDetailView(album: album)
                 .padding([.bottom, .horizontal])
-
-            if songsViewModel.state == .isLoading{
-                ProgressView()
-                    .progressViewStyle(.circular)
-            } else if songsViewModel.songs.count > 0 {
-                SongsInAlbumView(songsViewModel: songsViewModel)
-            }
+            
+            SongsInAlbumView(songsViewModel: songsViewModel, selectedSong: nil)
+            
         }
         .onAppear {
-            print("albumID - \(album.id)")
+            print("onAppear albumID - \(album.id)")
             songsViewModel.fetch()
-        }
-        .onReceive(songsViewModel.$state) { state in
-            if case let .error(error) = state {
-                print("Error: \(error)")
-            }
         }
     }
 }

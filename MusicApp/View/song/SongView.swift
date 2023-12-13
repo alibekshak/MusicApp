@@ -49,6 +49,9 @@ struct SongView: View {
                         .frame(maxWidth: .infinity)
                 case .loadedAll:
                     EmptyView()
+            case .noResults:
+                Text("Sorry Could not find anything.")
+                    .foregroundColor(.gray)
                 case .error(let error):
                     Text("\(error)")
             }

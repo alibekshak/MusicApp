@@ -9,11 +9,11 @@ import SwiftUI
 
 struct AlbumView: View {
     
-    @StateObject var viewModel: AlbumListViewModel
+    @ObservedObject var viewModel: AlbumListViewModel
     
     var body: some View {
         List{
-            ForEach(viewModel.albums){ album in
+            ForEach(viewModel.albums, id: \.id){ album in
                 NavigationLink(destination: AlbumDetailView(album: album)){
                     HStack{
                         ImageLoadingView(urlString: album.artworkUrl100, size: 100)
@@ -41,6 +41,9 @@ struct AlbumView: View {
                     
             case .loadedAll:
                 EmptyView()
+            case .noResults:
+                Text("Sorry Could not find anything.")
+                    .foregroundColor(.gray)
             case .error(let error):
                 Text("\(error)")
             }
