@@ -11,6 +11,7 @@ struct AlbumSearchView: View {
     
     @StateObject var viewModel = AlbumListViewModel()
     
+    
     var body: some View {
         NavigationView{
             Group{

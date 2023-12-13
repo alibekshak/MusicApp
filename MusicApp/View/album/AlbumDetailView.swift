@@ -4,49 +4,69 @@ struct AlbumDetailView: View {
 
     var album: Album
 
-//    @State private var musicResults: [SongResults] = []
-    @State private var imageLoadingStates: [String: Bool] = [:]
+    @ObservedObject var songsViewModel: SongForAlbumViewModel
+
+        init(album: Album) {
+            self.album = album
+            self._songsViewModel = ObservedObject(wrappedValue: SongForAlbumViewModel(albumID: album.id))
+        }
 
     var body: some View {
-       AlbumForDetailView(album: album)
-        .padding()
+        VStack{
+            AlbumForDetailView(album: album)
+                .padding([.bottom, .horizontal])
 
-        List{
-            ForEach(musicResults, id: \.trackName) { song in
-                NavigationLink(destination: WebView(urlString: song.previewUrl ?? "")){
-                    HStack{
-                        ImageLoadingView(urlString: song.artworkUrl60, size: 60)
-
-                        VStack(alignment: .leading){
-                            Text(song.trackName!)
-                                .font(.headline)
-                                .truncationMode(.tail)
-                            Text(song.artistName + " - " + song.collectionName!)
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                        }
-                        .lineLimit(1)
-                    }
-                }
+            if songsViewModel.state == .isLoading{
+                ProgressView()
+                    .progressViewStyle(.circular)
+            } else if songsViewModel.songs.count > 0 {
+                SongsInAlbumView(songsViewModel: songsViewModel)
             }
         }
-        .listStyle(.plain)
         .onAppear {
-//            searchSong()
+            print("albumID - \(album.id)")
+            songsViewModel.fetch()
+        }
+        .onReceive(songsViewModel.$state) { state in
+            if case let .error(error) = state {
+                print("Error: \(error)")
+            }
         }
     }
+}
 
-//    private func searchSong() {
-//        imageLoadingStates.removeAll()
-//        NetworkManagerSongAlbum.shared.fetchSongs(forAlbumId: String(album.id), entity: Auxiliary.TextForEntity().entitySong){ result in
-//            switch result {
-//            case .success(let song):
-//                let filteredSongs = song.filter { $0.trackName != nil }
-//                self.musicResults = filteredSongs
-//            case .failure(let error):
-//                print("\(error)")
+
+
+
+//struct SongsView: View{
+//    let songs: [Song]
+//    let selectedSong: Song?
+//
+//    var body: some View{
+//        VStack{
+//            ForEach(songs) { song in
+////                NavigationLink(destination: WebView(urlString: song.previewURL ?? "")){
+//                    HStack{
+////                        ImageLoadingView(urlString: song.artworkUrl60, size: 60)
+//
+//                        VStack(alignment: .leading){
+//                            Text(song.trackName ?? "")
+//                                .font(.headline)
+//                                .truncationMode(.tail)
+//                            Text(song.artistName + " - " + song.collectionName!)
+//                                .font(.caption)
+//                                .foregroundColor(.gray)
+//                        }
+//                        .lineLimit(1)
+//                    }
+//                    .foregroundColor(selectedSong?.id == song.id ? Color.accentColor : Color.black)
+//                    .id(song.trackNumber)
+//
+////                }
 //            }
 //        }
 //    }
+//}
 
-}
+
+

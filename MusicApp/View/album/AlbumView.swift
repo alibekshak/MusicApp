@@ -14,14 +14,16 @@ struct AlbumView: View {
     var body: some View {
         List{
             ForEach(viewModel.albums){ album in
-                HStack{
-                    ImageLoadingView(urlString: album.artworkUrl100, size: 100)
-                    
-                    VStack(alignment: .leading){
-                        Text(album.collectionName)
-                        Text(album.artistName)
-                            .font(.caption)
-                            .foregroundColor(.gray)
+                NavigationLink(destination: AlbumDetailView(album: album)){
+                    HStack{
+                        ImageLoadingView(urlString: album.artworkUrl100, size: 100)
+                        
+                        VStack(alignment: .leading){
+                            Text(album.collectionName)
+                            Text(album.artistName)
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                        }
                     }
                 }
             }

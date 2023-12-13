@@ -5,7 +5,7 @@ struct AlbumResponse: Codable {
     let results: [Album]
 }
 
-struct Album: Codable, Equatable, Identifiable {
+struct Album: Codable, Identifiable {
     let wrapperType, collectionType: String
     let id: Int
     let artistID: Int

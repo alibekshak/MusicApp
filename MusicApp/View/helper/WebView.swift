@@ -33,7 +33,7 @@ struct WebView: UIViewRepresentable {
 struct WebViewDemoView: View {
     var body: some View {
         NavigationView {
-            WebView(urlString: "https://www.example.com")
+            WebView(urlString: "")
                 .navigationBarTitle("Web Page")
         }
     }
