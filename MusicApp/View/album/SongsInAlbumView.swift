@@ -11,51 +11,49 @@ struct SongsInAlbumView: View {
     
     @ObservedObject var songsViewModel: SongForAlbumViewModel
     
-    let selectedSong: Song?
-    
     var body: some View {
-        ScrollViewReader { proxy in
-            
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 if songsViewModel.state == .isLoading{
                     ProgressView()
                         .progressViewStyle(.circular)
                 } else if songsViewModel.songs.count > 0 {
-                    VStack(spacing: 10) {
+                    VStack(alignment: .leading, spacing: 10) {
                         ForEach(songsViewModel.songs) { song in
-                            HStack{
-                                ImageLoadingView(urlString: song.artworkUrl60, size: 60)
-
-                                VStack(alignment: .leading){
-                                    Text("\(song.country)")
+                            NavigationLink(destination: WebView(urlString: song.previewURL)){
+                                HStack(spacing: 10){
+                                    Text("\(song.trackNumber)")
                                         .font(.footnote)
-                                    Text(song.trackName)
-                                        .font(.headline)
-                                        .truncationMode(.tail)
-                                    Text(song.artistName)
-                                        .font(.caption)
-                                        .foregroundColor(.gray)
+                                        .frame(width: 25, alignment: .trailing)
+                                        .foregroundColor(.black)
+                                    
+                                    ImageLoadingView(urlString: song.artworkUrl60, size: 60)
+                                    
+                                    VStack(alignment: .leading){
+                                        Text("\(song.country)")
+                                            .font(.footnote)
+                                            .foregroundColor(.black)
+                                        Text(song.trackName)
+                                            .font(.headline)
+                                            .truncationMode(.tail)
+                                            .foregroundColor(.black)
+                                        Text(song.artistName)
+                                            .font(.caption)
+                                            .foregroundColor(.gray)
+                                    }
+                                    .lineLimit(1)
                                 }
-                                .lineLimit(1)
+                                .id(song.trackNumber)
                             }
-                        }
-                    }
-                    .onAppear {
-                        if let song = selectedSong {
-                            withAnimation {
-                                proxy.scrollTo(song.trackNumber, anchor: .center)
-                            }
+                            Divider()
                         }
                     }
                 }
             }
-        }
     }
 }
 
 struct SongsInAlbumView_Previews: PreviewProvider {
     static var previews: some View {
-        SongsInAlbumView(songsViewModel: SongForAlbumViewModel.example(),
-                              selectedSong: nil)
+        SongsInAlbumView(songsViewModel: SongForAlbumViewModel.example())
     }
 }

@@ -15,8 +15,9 @@ struct AlbumDetailView: View {
         VStack{
             AlbumForDetailView(album: album)
                 .padding([.bottom, .horizontal])
+                .padding(.top, -30)
             
-            SongsInAlbumView(songsViewModel: songsViewModel, selectedSong: nil)
+            SongsInAlbumView(songsViewModel: songsViewModel)
             
         }
         .onAppear {
@@ -25,39 +26,5 @@ struct AlbumDetailView: View {
         }
     }
 }
-
-
-
-
-//struct SongsView: View{
-//    let songs: [Song]
-//    let selectedSong: Song?
-//
-//    var body: some View{
-//        VStack{
-//            ForEach(songs) { song in
-////                NavigationLink(destination: WebView(urlString: song.previewURL ?? "")){
-//                    HStack{
-////                        ImageLoadingView(urlString: song.artworkUrl60, size: 60)
-//
-//                        VStack(alignment: .leading){
-//                            Text(song.trackName ?? "")
-//                                .font(.headline)
-//                                .truncationMode(.tail)
-//                            Text(song.artistName + " - " + song.collectionName!)
-//                                .font(.caption)
-//                                .foregroundColor(.gray)
-//                        }
-//                        .lineLimit(1)
-//                    }
-//                    .foregroundColor(selectedSong?.id == song.id ? Color.accentColor : Color.black)
-//                    .id(song.trackNumber)
-//
-////                }
-//            }
-//        }
-//    }
-//}
-
 
 
