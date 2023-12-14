@@ -4,10 +4,6 @@ struct ContentView: View {
     
     var body: some View {
         TabView{
-//            SearchView()
-//                .tabItem{
-//                    Label(Auxiliary.TextForTabView().nameForSearch, systemImage: Auxiliary.TextForTabView().imageForSearch)
-//                }
             AlbumSearchView()
                 .tabItem{
                     Label(Auxiliary.TextForTabView().nameForAlbum, systemImage: Auxiliary.TextForTabView().imageForAlbum)
